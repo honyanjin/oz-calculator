@@ -110,6 +110,11 @@ const calculate = (displayResult = true) => {
         throw new Error("알 수 없는 연산자입니다.");
     }
 
+    // 계산 기록 저장
+    const record = { firstNumber, operator, secondNumber, result };
+    history.push(record);
+    console.log("계산 기록:", JSON.stringify(history, null, 2));
+
     // 계산 후 초기화 (결과를 다음 계산의 첫 번째 숫자로 사용)
     currentInput = result.toString();
     firstNumber = result; // 다음 연산을 위해 결과 저장
@@ -125,6 +130,9 @@ const calculate = (displayResult = true) => {
       // 중간 계산일 경우 화면에 표시하지 않고 firstNumber만 업데이트
       firstNumber = result;
     }
+
+    // 계산 기록 화면에 출력
+    updateHistory();
   } catch (error) {
     showError(error.message);
   }
@@ -145,11 +153,7 @@ const calculate = (displayResult = true) => {
 // 내역 지우기
 const historyClear = () => {
   history = []; // 기록 배열 초기화
-
-  const historyElement = document.getElementById("history");
-  if (historyElement) {
-    historyElement.innerHTML = ""; // 화면에서 기록 제거
-  }
+  updateHistory();
 };
 
 // 에러 메시지 출력
@@ -171,4 +175,18 @@ const backspace = () => {
 // 고양이 버튼 기능
 const catAction = () => {
   alert("고양이는 귀엽다!");
+};
+
+// 계산 기록 화면 업데이트
+const updateHistory = () => {
+  const historyElement = document.getElementById("history");
+  if (historyElement) {
+    historyElement.innerHTML = ""; // 기존 기록 초기화
+    for (let i = history.length - 1; i >= 0; i--) {
+      const item = history[i];
+      const entry = document.createElement("div");
+      entry.textContent = `${item.firstNumber} ${item.operator} ${item.secondNumber} = ${item.result}`;
+      historyElement.appendChild(entry);
+    }
+  }
 };
