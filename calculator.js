@@ -1,3 +1,4 @@
+const operators = ["+", "-", "*", "/"]; // const 사용
 let history = []; // 계산 기록을 저장하는 배열
 let currentInput = ""; // 현재 입력값
 let firstNumber = null; // 첫 번째 숫자
@@ -9,6 +10,7 @@ const appendNumber = (number) => {
     // TODO: 학생들이 작성해야 할 로직
     // 1. number가 유효한 숫자인지 확인 (예: 문자열 "0" ~ "9")
     // 예: if (!/^[0-9]$/.test(number)) throw new Error("유효한 숫자를 입력하세요.");
+    if (!/^[0-9]$/.test(number)) throw new Error("유효한 숫자를 입력하세요.");
 
     // currentInput에 숫자 추가
     currentInput += number;
@@ -28,6 +30,7 @@ const setOperator = (op) => {
     // TODO: 학생들이 작성해야 할 로직
     // 2. op가 유효한 연산자(+, -, *, /)인지 확인
     // 예: if (!["+", "-", "*", "/"].includes(op)) throw new Error("유효한 연산자를 선택하세요.");
+    if (!operators.includes(op)) throw new Error("유효한 연산자를 선택하세요.");
 
     // 현재 입력값이 없으면 예외 처리
     if (!currentInput) throw new Error("숫자를 먼저 입력하세요.");
@@ -38,10 +41,13 @@ const setOperator = (op) => {
     // TODO: 학생들이 작성해야 할 로직
     // 3. firstNumber가 유효한 숫자인지 확인
     // 예: if (isNaN(firstNumber)) throw new Error("유효한 숫자를 입력하세요.");
+    if (isNaN(firstNumber)) throw new Error("유효한 숫자를 입력하세요.");
 
     operator = op;
     currentInput = ""; // 입력값 초기화
-    document.getElementById("display").textContent = "0";
+    const display = document.getElementById("display");
+    if (!display) throw new Error("디스플레이 요소를 찾을 수 없습니다.");
+    display.textContent = "0";
   } catch (error) {
     showError(error.message);
   }
@@ -63,19 +69,41 @@ const calculate = () => {
     // TODO: 학생들이 작성해야 할 로직
     // 4. firstNumber, operator, currentInput(두 번째 숫자)이 모두 존재하는지 확인
     // 예: if (firstNumber === null || operator === null || !currentInput) throw new Error("계산에 필요한 값이 부족합니다.");
+    if (firstNumber === null || operator === null || !currentInput) {
+      throw new Error("계산에 필요한 값이 부족합니다.");
+    }
 
     const secondNumber = Number(currentInput);
 
     // TODO: 학생들이 작성해야 할 로직
     // 5. secondNumber가 유효한 숫자인지 확인
     // 예: if (isNaN(secondNumber)) throw new Error("유효한 숫자를 입력하세요.");
+    if (isNaN(secondNumber)) throw new Error("유효한 숫자를 입력하세요.");
+
     // 6. 나눗셈에서 secondNumber가 0인지 확인
     // 예: if (operator === "/" && secondNumber === 0) throw new Error("0으로 나눌 수 없습니다.");
+    if (operator === "/" && secondNumber === 0) throw new Error("0으로 나눌 수 없습니다.");
 
-    let result;
+    let result; // let도 사용
     // TODO: 학생들이 작성해야 할 로직
     // 7. operator에 따라 사칙연산 수행 (switch 문 사용 권장)
     // 예: switch (operator) { case "+": result = firstNumber + secondNumber; break; ... }
+    switch (operator) {
+      case "+":
+        result = firstNumber + secondNumber;
+        break;
+      case "-":
+        result = firstNumber - secondNumber;
+        break;
+      case "*":
+        result = firstNumber * secondNumber;
+        break;
+      case "/":
+        result = firstNumber / secondNumber;
+        break;
+      default:
+        throw new Error("알 수 없는 연산자입니다.");
+    }
 
     // 결과 출력
     resultElement.classList.remove("d-none", "alert-danger");
@@ -94,6 +122,28 @@ const calculate = () => {
     document.getElementById("display").textContent = currentInput;
   } catch (error) {
     showError(error.message);
+  }
+
+  // 계산 기록 화면에 출력
+  const historyElement = document.getElementById("history");
+  if (historyElement) {
+    historyElement.innerHTML = ""; // 기존 기록 초기화
+    for (let i = history.length - 1; i >= 0; i--) {
+      const item = history[i];
+      const entry = document.createElement("div");
+      entry.textContent = `${item.firstNumber} ${item.operator} ${item.secondNumber} = ${item.result}`;
+      historyElement.appendChild(entry);
+    }
+  }
+};
+
+// 내역 지우기
+const historyClear = () => {
+  history = []; // 기록 배열 초기화
+
+  const historyElement = document.getElementById("history");
+  if (historyElement) {
+    historyElement.innerHTML = ""; // 화면에서 기록 제거
   }
 };
 

@@ -26,3 +26,11 @@ body {
 .result-alert {
   margin-top: 10px;
 }
+
+#history {
+  text-align: center;
+}
+
+#historyMeny {
+  text-align: center;
+}
