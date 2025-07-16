@@ -18,54 +18,70 @@
       <h1 class="text-center mb-4">계산기 서비스</h1>
       <div id="display" class="form-control">0</div>
       <div class="row g-2">
-        <!-- 숫자 버튼 -->
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('7')">7</button>
+        <!-- Group 1: Numbers and . C -->
+        <div class="col-6">
+          <div class="row g-2">
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('7')">7</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('8')">8</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('9')">9</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('4')">4</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('5')">5</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('6')">6</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('1')">1</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('2')">2</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('3')">3</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('.')">.</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('0')">0</button>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-danger calc-btn w-100" onclick="clearDisplay()">C</button>
+            </div>
+          </div>
         </div>
+        <!-- Group 2: Operators -->
         <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('8')">8</button>
+          <div class="d-flex flex-column h-100">
+            <button class="btn btn-warning calc-btn w-100 mb-2" onclick="setOperator('/')">÷</button>
+            <button class="btn btn-warning calc-btn w-100 mb-2" onclick="setOperator('*')">×</button>
+            <button class="btn btn-warning calc-btn w-100 mb-2" onclick="setOperator('-')">-</button>
+            <button class="btn btn-warning calc-btn w-100" onclick="setOperator('+')">+</button>
+          </div>
         </div>
+        <!-- Group 3: Advanced Operators -->
         <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('9')">9</button>
+          <div class="d-flex flex-column h-100">
+            <button class="btn btn-info calc-btn w-100 mb-2" onclick="backspace()">&larr;</button>
+            <button class="btn btn-info calc-btn w-100 mb-2" onclick="setOperator('^')">^</button>
+            <button class="btn btn-info calc-btn w-100 mb-2" onclick="setOperator('%')">mod</button>
+            <button class="btn btn-info calc-btn w-100" onclick="catAction()">😺</button>
+          </div>
         </div>
-        <div class="col-3">
-          <button class="btn btn-warning calc-btn w-100" onclick="setOperator('/')">÷</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('4')">4</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('5')">5</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('6')">6</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-warning calc-btn w-100" onclick="setOperator('*')">×</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('1')">1</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('2')">2</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('3')">3</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-warning calc-btn w-100" onclick="setOperator('-')">-</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-secondary calc-btn w-100" onclick="appendNumber('0')">0</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-danger calc-btn w-100" onclick="clearDisplay()">C</button>
-        </div>
-        <div class="col-3">
+      </div>
+      <!-- Equals Button -->
+      <div class="row g-2 mt-2">
+        <div class="col-12">
           <button class="btn btn-primary calc-btn w-100" onclick="calculate()">=</button>
-        </div>
-        <div class="col-3">
-          <button class="btn btn-warning calc-btn w-100" onclick="setOperator('+')">+</button>
         </div>
       </div>
       <div id="result" class="alert alert-info result-alert d-none"></div>
