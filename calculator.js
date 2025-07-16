@@ -190,3 +190,22 @@ const updateHistory = () => {
     }
   }
 };
+
+// 키보드 입력 지원
+window.addEventListener('keydown', (event) => {
+  const key = event.key;
+
+  if (key >= '0' && key <= '9') {
+    appendNumber(key);
+  } else if (key === '.') {
+    appendNumber('.');
+  } else if (operators.includes(key)) {
+    setOperator(key);
+  } else if (key === 'Enter' || key === '=') {
+    calculate();
+  } else if (key === 'Escape') {
+    clearDisplay();
+  } else if (key === 'Backspace') {
+    backspace();
+  }
+});
