@@ -1,5 +1,8 @@
 /* 계산 기록 관리 모듈 */
 
+// 충돌 테스트 용
+let history = []; // History for exponent operations
+
 // 계산 기록 저장 + 화면에 업데이트
 export default function saveHistory(firstNumber, operator, secondNumber, result, history) {
   const record = { firstNumber, operator, secondNumber, result };
