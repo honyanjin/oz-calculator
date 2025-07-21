@@ -1,4 +1,13 @@
-import calculate, { appendNumber, setOperator, resetDisplay, subDisplay, VALID_NUMBERS, VALID_OPERATORS, history } from "./index.js";
+import calculate, {
+  appendNumber,
+  setOperator,
+  resetDisplay,
+  subDisplay,
+  VALID_NUMBERS,
+  VALID_OPERATORS,
+  displayHistory as showHistory,
+  history,
+} from "./index.js";
 
 // HTML에서 직접 호출할 수 있도록 함수들을 전역 스코프에 할당
 window.appendNumber = appendNumber;
@@ -20,3 +29,13 @@ document.addEventListener("keydown", (event) => {
   if (key === "Escape") resetDisplay();
   if (key === "Backspace") subDisplay();
 });
+
+
+// 계산 기록 표시 버튼 이벤트 리스너
+const historyButton = document.getElementById("history-button");
+if (historyButton) {
+  historyButton.addEventListener("click", () => {
+    const historyContent = showHistory(history);
+    alert(historyContent);
+  });
+}

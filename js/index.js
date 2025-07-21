@@ -12,7 +12,7 @@ import {
   VALID_OPERATORS,
 } from "./input.js";
 import { showError, removeError } from "./error.js";
-import saveHistory from "./history.js";
+import saveHistory, { displayHistory } from "./history.js";
 
 // 애플리케이션의 상태를 관리하는 변수들
 let history = []; // 계산 기록 배열
@@ -79,6 +79,7 @@ export {
   showError,
   removeError,
   saveHistory,
+  displayHistory,
   VALID_NUMBERS,
   VALID_OPERATORS,
   history,

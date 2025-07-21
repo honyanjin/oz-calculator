@@ -34,3 +34,7 @@ body {
 #historyMeny {
   text-align: center;
 }
+
+#history-button {
+  margin-top: 10px;
+}
