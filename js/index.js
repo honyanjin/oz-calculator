@@ -15,7 +15,7 @@ import { showError, removeError } from "./error.js";
 import saveHistory, { displayHistory } from "./history.js";
 
 // 애플리케이션의 상태를 관리하는 변수들
-let history = []; // History for displaying records
+let history = []; // History for exponent operations
 let currentInput = ""; // 현재 사용자가 입력 중인 값
 let firstNumber = null; // 첫 번째 피연산자
 let operator = null; // 선택된 연산자
