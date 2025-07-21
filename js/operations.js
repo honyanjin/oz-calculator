@@ -30,6 +30,7 @@ export default function calculateOperation(firstNumber, secondNumber, operator) 
     case "^":
       result = Math.pow(firstNumber, secondNumber);
       break;
+    // 제곱 연산이 이미 있어서 주석을 추가했다~~~
     case "%":
       result = firstNumber % secondNumber;
       break;
